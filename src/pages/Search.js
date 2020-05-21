@@ -1,3 +1,3 @@
-const Search = () => 'Hello Search';
+const Search = () => 'Search Placeholder';
 
 export default Search;
