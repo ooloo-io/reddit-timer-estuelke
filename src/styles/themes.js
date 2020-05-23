@@ -4,11 +4,16 @@ const GlobalStyle = createGlobalStyle`
   body {
     background-color: ${({ theme }) => theme.bgColor};
     font-family: ${({ theme }) => theme.font.primary};
+    color: ${({ theme }) => theme.color.primary};
   }
 `;
 
 const mainTheme = {
   bgColor: '#fffff',
+  color: {
+    primary: '#93918f',
+    secondary: '#000000',
+  },
   font: {
     primary: "'Montserrat', san-serif",
     secondary: "'Bitter', serif",
