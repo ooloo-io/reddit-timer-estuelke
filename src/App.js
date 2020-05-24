@@ -5,12 +5,12 @@ import {
 import { ThemeProvider } from 'styled-components';
 import Home from './pages/Home';
 import Search from './pages/Search';
-import mainTheme, { GlobalStyle } from './styles/themes';
+import currentTheme, { GlobalStyle } from './styles/themes';
 
 
 function App() {
   return (
-    <ThemeProvider theme={mainTheme}>
+    <ThemeProvider theme={currentTheme}>
       <GlobalStyle />
       <Router>
         <Switch>

@@ -13,6 +13,7 @@ const mainTheme = {
   color: {
     primary: '#93918f',
     secondary: '#000000',
+    navigation: '#636363',
   },
   font: {
     primary: "'Montserrat', san-serif",
@@ -20,4 +21,7 @@ const mainTheme = {
   },
 };
 
-export { GlobalStyle, mainTheme as default };
+/* Placeholder for updating the theme on the fly */
+const currentTheme = mainTheme;
+
+export { GlobalStyle, currentTheme as default };
