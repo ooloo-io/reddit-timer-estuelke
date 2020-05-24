@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`StyledNavLink renders correctly with theme passed 1`] = `
+<a
+  className="sc-AxjAm eKgzTh"
+>
+  Test Link
+</a>
+`;
+
+exports[`StyledNavLink renders correctly without theme passed 1`] = `
+<a
+  className="sc-AxjAm eKgzTh"
+>
+  Test Link
+</a>
+`;

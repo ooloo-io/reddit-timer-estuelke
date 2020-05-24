@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import mainTheme from '../styles/themes';
 
 
 const NavLink = ({ className, children, href }) => (
@@ -14,5 +15,9 @@ const StyledNavLink = styled(NavLink)`
   font-family: ${({ theme }) => theme.font.primary};
   margin-left: 26px;
 `;
+
+StyledNavLink.defaultProps = {
+  theme: mainTheme,
+};
 
 export default StyledNavLink;

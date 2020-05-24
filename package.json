@@ -49,6 +49,7 @@
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.19.0",
     "eslint-plugin-react-hooks": "^2.5.0",
-    "husky": "^4.2.5"
+    "husky": "^4.2.5",
+    "react-test-renderer": "^16.13.1"
   }
 }

@@ -21,7 +21,4 @@ const mainTheme = {
   },
 };
 
-/* Placeholder for updating the theme on the fly */
-const currentTheme = mainTheme;
-
-export { GlobalStyle, currentTheme as default };
+export { GlobalStyle, mainTheme as default };
