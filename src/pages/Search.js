@@ -3,7 +3,6 @@ import Header from '../components/Header';
 
 const Search = () => (
   <>
-    <Header />
     <div>Search placeholder</div>
   </>
 );

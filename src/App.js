@@ -5,6 +5,7 @@ import {
 import { ThemeProvider } from 'styled-components';
 import Home from './pages/Home';
 import Search from './pages/Search';
+import Header from './components/Header';
 import mainTheme, { GlobalStyle } from './styles/themes';
 
 
@@ -12,6 +13,7 @@ function App() {
   return (
     <ThemeProvider theme={mainTheme}>
       <GlobalStyle />
+      <Header />
       <Router>
         <Switch>
           <Route exact path="/">
