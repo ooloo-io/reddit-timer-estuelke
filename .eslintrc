@@ -10,7 +10,6 @@
   "plugins": ["cypress"],
   "rules": {
     "react/jsx-filename-extension": [1, { "extensions": [".js"] }],
-    "react/prop-types": 0,
     "cypress/no-assigning-return-values": "error",
     "cypress/no-unnecessary-waiting": "error",
     "cypress/assertion-before-screenshot": "warn",
