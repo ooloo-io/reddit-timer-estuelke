@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { ReactComponent as TimerLogo } from '../assets/logo.svg';
+import mainTheme from '../styles/themes';
 
 
 const HeaderWrapper = styled.header`
@@ -28,6 +29,9 @@ const NavLink = styled(Link)`
   margin-left: 26.3px;
 `;
 
+NavLink.defaultProps = {
+  theme: mainTheme,
+};
 
 const Header = () => (
   <HeaderWrapper>
