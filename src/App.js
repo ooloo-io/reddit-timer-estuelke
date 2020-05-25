@@ -13,13 +13,13 @@ function App() {
   return (
     <ThemeProvider theme={mainTheme}>
       <GlobalStyle />
-      <Header />
       <Router>
+        <Header />
         <Switch>
           <Route exact path="/">
             <Home />
           </Route>
-          <Route exact path="/search">
+          <Route path="/search/:subreddit?">
             <Search />
           </Route>
           <Redirect to="/" />

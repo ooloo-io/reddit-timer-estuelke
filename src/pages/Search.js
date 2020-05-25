@@ -1,10 +1,16 @@
 import React from 'react';
-import Header from '../components/Header';
+import { useParams } from 'react-router-dom';
 
-const Search = () => (
-  <>
-    <div>Search placeholder</div>
-  </>
-);
+
+const Search = () => {
+  const { subreddit } = useParams();
+  return (
+    <div>
+      Search placeholder:
+      { subreddit || 'javascript' }
+    </div>
+  );
+};
+
 
 export default Search;

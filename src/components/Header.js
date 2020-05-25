@@ -1,6 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import StyledNavLink from './NavLink';
 import { ReactComponent as TimerLogo } from '../assets/logo.svg';
 
 
@@ -13,25 +13,33 @@ const HeaderWrapper = styled.header`
   padding: 0 80px;
 `;
 
-const NavWrapper = styled.nav`
+const Nav = styled.nav`
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
   align-items: center;
 `;
 
+const NavLink = styled(Link)`
+  color: ${({ theme }) => theme.color.navigation};
+  text-decoration: none;
+  font-family: ${({ theme }) => theme.font.primary};
+  margin-left: 26px;
+`;
+
+
 const Header = () => (
   <HeaderWrapper>
-    <a href="/">
+    <Link to="/">
       <div>
         <TimerLogo />
       </div>
-    </a>
-    <NavWrapper>
-      <StyledNavLink href="/search?subreddit=javascript">Search</StyledNavLink>
-      <StyledNavLink href="#how-it-works">How it works</StyledNavLink>
-      <StyledNavLink href="#about">About</StyledNavLink>
-    </NavWrapper>
+    </Link>
+    <Nav>
+      <NavLink to="/search/">Search</NavLink>
+      <NavLink to="#how-it-works">How it works</NavLink>
+      <NavLink to="#about">About</NavLink>
+    </Nav>
   </HeaderWrapper>
 );
 
