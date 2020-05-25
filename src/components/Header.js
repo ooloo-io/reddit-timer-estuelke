@@ -18,13 +18,14 @@ const Nav = styled.nav`
   flex-direction: row;
   justify-content: flex-end;
   align-items: center;
+  margin-bottom: 2px;
 `;
 
 const NavLink = styled(Link)`
   color: ${({ theme }) => theme.color.navigation};
   text-decoration: none;
   font-family: ${({ theme }) => theme.font.primary};
-  margin-left: 26px;
+  margin-left: 26.3px;
 `;
 
 
