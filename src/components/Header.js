@@ -41,7 +41,7 @@ const Header = () => (
       </div>
     </Link>
     <Nav>
-      <NavLink to="/search/">Search</NavLink>
+      <NavLink to="/search">Search</NavLink>
       <NavLink to="#how-it-works">How it works</NavLink>
       <NavLink to="#about">About</NavLink>
     </Nav>
