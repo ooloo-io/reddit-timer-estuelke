@@ -5,6 +5,7 @@ import {
 import { ThemeProvider } from 'styled-components';
 import Home from './pages/Home';
 import Search from './pages/Search';
+import Header from './components/Header';
 import mainTheme, { GlobalStyle } from './styles/themes';
 
 
@@ -13,11 +14,12 @@ function App() {
     <ThemeProvider theme={mainTheme}>
       <GlobalStyle />
       <Router>
+        <Header />
         <Switch>
           <Route exact path="/">
             <Home />
           </Route>
-          <Route exact path="/search">
+          <Route path="/search/:subreddit?">
             <Search />
           </Route>
           <Redirect to="/" />
