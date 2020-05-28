@@ -1,51 +1,43 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom/extend-expect';
-import { BrowserRouter as Router } from 'react-router-dom';
-import { ThemeProvider } from 'styled-components';
-import Header from '../components/Header';
-import mainTheme from '../styles/themes';
+import App from '../App';
 
-const renderHeader = () => (
-  render(
-    <ThemeProvider theme={mainTheme}>
-      <Router>
-        <Header theme={mainTheme} />
-      </Router>
-    </ThemeProvider>,
-  ));
 
 describe('header', () => {
-  it('contains a logo that links to home page', () => {
-    const { getByTitle, getByText } = renderHeader();
-    const logoElement = getByText('logo.svg');
-    const logoLinkElement = getByTitle('header-logo');
+  it('navigates to search page when search link is clicked', () => {
+    render(<App />);
 
-    expect(logoElement).toBeInTheDocument();
-    expect(logoLinkElement).toContainHTML('href="/"');
+    expect(screen.getByTitle('home')).toBeInTheDocument();
+    expect(screen.queryByTitle('search')).not.toBeInTheDocument();
+
+    userEvent.click(screen.getByRole('link', { name: /Search/ }));
+    expect(screen.getByTitle('search')).toBeInTheDocument();
+    expect(screen.queryByTitle('home')).not.toBeInTheDocument();
   });
 
-  it('contains a link to the search page', () => {
-    const { getByText } = renderHeader();
-    const searchElement = getByText(/^Search$/);
+  it('navigates to home page when logo is clicked', () => {
+    render(<App />);
 
-    expect(searchElement).toBeInTheDocument();
-    expect(searchElement).toContainHTML('href="/search"');
+    userEvent.click(screen.getByTitle('header-logo-link'));
+    expect(screen.getByTitle('home')).toBeInTheDocument();
+    expect(screen.queryByTitle('search')).not.toBeInTheDocument();
   });
 
-  it('contains a link to the about section', () => {
-    const { getByText } = renderHeader();
-    const aboutElement = getByText(/^About$/);
+  it('navigates to About section when About link is clicked', () => {
+    render(<App />);
 
-    expect(aboutElement).toBeInTheDocument();
-    expect(aboutElement).toContainHTML('href="/#about"');
+    userEvent.click(screen.getByRole('link', { name: /About/ }));
+    // How to test that it scrolled to the section?
+    expect(screen.queryByTitle('search')).not.toBeInTheDocument();
   });
 
-  it('contains a link to the How it works section', () => {
-    const { getByText } = renderHeader();
-    const howItWorksElement = getByText(/^How it works$/);
+  it('navigates to How it works section when How it works link is clicked', () => {
+    render(<App />);
 
-    expect(howItWorksElement).toBeInTheDocument();
-    expect(howItWorksElement).toContainHTML('href="/#how-it-works"');
+    userEvent.click(screen.getByRole('link', { name: /How it works/ }));
+    // How to test that it scrolled to the section?
+    expect(screen.queryByTitle('search')).not.toBeInTheDocument();
   });
 });
