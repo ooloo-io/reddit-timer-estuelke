@@ -5,10 +5,10 @@ import { useParams } from 'react-router-dom';
 const Search = () => {
   const { subreddit = 'javascript' } = useParams();
   return (
-    <div>
+    <main title="search">
       Search placeholder:
       { subreddit }
-    </div>
+    </main>
   );
 };
 
