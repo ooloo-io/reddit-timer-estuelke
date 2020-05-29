@@ -7,6 +7,19 @@ import App from '../App';
 
 
 describe('App', () => {
+  it('navigates to search page when subreddit is specified', () => {
+    const history = createMemoryHistory();
+    history.push('/search/subredditname');
+
+    render(
+      <Router history={history}>
+        <App />
+      </Router>,
+    );
+
+    expect(history.location.pathname).toEqual('/search/subredditname');
+  });
+
   it('redirects to home page when bad url passed', () => {
     const history = createMemoryHistory();
     history.push('/route/does/not/exist');
