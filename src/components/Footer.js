@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { ReactComponent as FooterLogo } from '../assets/sign.svg';
 
 const FooterWrapper = styled.footer`
