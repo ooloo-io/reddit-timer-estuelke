@@ -1,43 +1,64 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
+import { Router } from 'react-router-dom';
+import { render, fireEvent } from '@testing-library/react';
+import { createMemoryHistory } from 'history';
 import '@testing-library/jest-dom/extend-expect';
 import App from '../App';
 
 
 describe('header', () => {
   it('navigates to search page when search link is clicked', () => {
-    render(<App />);
+    const history = createMemoryHistory();
+    const { getByRole } = render(
+      <Router history={history}>
+        <App />
+      </Router>,
+    );
 
-    expect(screen.getByTitle('home')).toBeInTheDocument();
-    expect(screen.queryByTitle('search')).not.toBeInTheDocument();
+    const searchLink = getByRole('link', { name: /Search/ });
+    fireEvent.click(searchLink);
 
-    userEvent.click(screen.getByRole('link', { name: /Search/ }));
-    expect(screen.getByTitle('search')).toBeInTheDocument();
-    expect(screen.queryByTitle('home')).not.toBeInTheDocument();
+    expect(history.location.pathname).toEqual('/search');
   });
 
   it('navigates to home page when logo is clicked', () => {
-    render(<App />);
+    const history = createMemoryHistory();
+    const { getByRole } = render(
+      <Router history={history}>
+        <App />
+      </Router>,
+    );
 
-    userEvent.click(screen.getByTitle('header-logo-link'));
-    expect(screen.getByTitle('home')).toBeInTheDocument();
-    expect(screen.queryByTitle('search')).not.toBeInTheDocument();
+    const logoLink = getByRole('link', { name: /logo\.svg/ });
+    fireEvent.click(logoLink);
+    expect(history.location.pathname).toEqual('/');
   });
 
   it('navigates to About section when About link is clicked', () => {
-    render(<App />);
+    const history = createMemoryHistory();
+    const { getByRole } = render(
+      <Router history={history}>
+        <App />
+      </Router>,
+    );
 
-    userEvent.click(screen.getByRole('link', { name: /About/ }));
-    // How to test that it scrolled to the section?
-    expect(screen.queryByTitle('search')).not.toBeInTheDocument();
+    const aboutLink = getByRole('link', { name: /About/ });
+    fireEvent.click(aboutLink);
+
+    expect(history.location.hash).toEqual('#about');
   });
 
   it('navigates to How it works section when How it works link is clicked', () => {
-    render(<App />);
+    const history = createMemoryHistory();
+    const { getByRole } = render(
+      <Router history={history}>
+        <App />
+      </Router>,
+    );
 
-    userEvent.click(screen.getByRole('link', { name: /How it works/ }));
-    // How to test that it scrolled to the section?
-    expect(screen.queryByTitle('search')).not.toBeInTheDocument();
+    const howItWorksLink = getByRole('link', { name: /How it works/ });
+    fireEvent.click(howItWorksLink);
+
+    expect(history.location.hash).toEqual('#how-it-works');
   });
 });
