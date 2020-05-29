@@ -19,6 +19,9 @@ const mainTheme = {
   font: {
     primary: "'Montserrat', san-serif",
     secondary: "'Bitter', serif",
+    size: {
+      small: '14px',
+    },
   },
 };
 

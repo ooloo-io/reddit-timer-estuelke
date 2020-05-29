@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom';
 const Search = () => {
   const { subreddit = 'javascript' } = useParams();
   return (
-    <main id="search">
+    <main>
       Search placeholder:
       { subreddit }
     </main>

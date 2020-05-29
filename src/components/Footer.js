@@ -13,47 +13,37 @@ const FooterWrapper = styled.footer`
 `;
 
 const Nav = styled.nav`
+  box-sizing: border-box;
   display: flex;
-  width: 100%;
-  margin: auto;
-  justify-content: space-between;
   align-items: center;
-  padding: 0 250px;
-`;
-
-const baseLinkStyle = css`
-  color: ${({ theme }) => theme.color.navigation};
-  text-decoration: none;
-  font-family: ${({ theme }) => theme.font.primary};
-  font-size: 0.9rem;
+  width: 100%;
+  max-width: 980px;
+  margin: auto;
+  padding: 0 20px;
 `;
 
 const FooterLink = styled(Link)`
-  ${baseLinkStyle}
+  flex: 1;
+  color: ${({ theme }) => theme.color.navigation};
+  text-decoration: none;
+  font-family: ${({ theme }) => theme.font.primary};
+  font-size: ${({ theme }) => theme.font.size.small};
+  margin-right: 1px;
 `;
-
-const LogoLink = styled(FooterLink)`
-  margin-left: 59px;
-`;
-
-const ExternalLink = styled.a`
-  ${baseLinkStyle}
-  margin-bottom: 1px;
-`;
-
 
 const Footer = () => (
   <FooterWrapper>
     <Nav>
-      <ExternalLink
+      <FooterLink
+        as="a"
         href="https://ooloo.io/employers"
       >
         ooloo.io
-      </ExternalLink>
-      <LogoLink to="/">
+      </FooterLink>
+      <Link to="/">
         <FooterLogo />
-      </LogoLink>
-      <FooterLink to="/terms">
+      </Link>
+      <FooterLink to="/terms" style={{ textAlign: 'right', marginBottom: '2px' }}>
         Terms &amp; Privacy
       </FooterLink>
     </Nav>

@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Terms = () => (
-  <main id="Terms">
+  <main>
     <div>Terms placeholder</div>
   </main>
 );

@@ -30,7 +30,7 @@ const NavLink = styled(Link)`
 
 const Header = () => (
   <HeaderWrapper>
-    <Link to="/" id="header-logo-link">
+    <Link to="/">
       <TimerLogo />
     </Link>
     <Nav>
