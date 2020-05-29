@@ -5,6 +5,7 @@ const GlobalStyle = createGlobalStyle`
     background-color: ${({ theme }) => theme.color.background};
     font-family: ${({ theme }) => theme.font.primary};
     color: ${({ theme }) => theme.color.primary};
+    width: 100%;
   }
 `;
 
@@ -18,6 +19,9 @@ const mainTheme = {
   font: {
     primary: "'Montserrat', san-serif",
     secondary: "'Bitter', serif",
+    size: {
+      small: '14px',
+    },
   },
 };
 
