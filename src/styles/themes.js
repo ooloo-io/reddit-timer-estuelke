@@ -14,7 +14,8 @@ const GlobalStyle = createGlobalStyle`
     font-family: ${({ theme }) => theme.font.secondary};
     font-size: 38px;
     font-weight: normal;
-  #root {
+  
+    #root {
     position: relative;
     min-height: 100vh;
   }
