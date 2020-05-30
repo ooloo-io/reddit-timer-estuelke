@@ -23,6 +23,10 @@ const mainTheme = {
       small: '14px',
     },
   },
+  button: {
+    background: '#fdb755',
+    color: '#ffffff',
+  },
 };
 
 export { GlobalStyle, mainTheme as default };

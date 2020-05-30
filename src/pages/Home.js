@@ -1,11 +1,12 @@
 import React from 'react';
+import Hero from '../components/Hero';
 
 const Home = () => (
-  <main>
-    <div>Home placeholder</div>
-    <div id="about">About</div>
-    <div id="how-it-works">How it works</div>
-  </main>
+  <>
+    <Hero />
+    <section id="about">About</section>
+    <section id="how-it-works">How it works</section>
+  </>
 );
 
 export default Home;
