@@ -15,7 +15,7 @@ describe('hero section', () => {
       </Router>,
     );
 
-    const ctaButton = getByRole('button', { name: /Show me the best time/i });
+    const ctaButton = getByRole('link', { name: /Show me the best time/i });
     fireEvent.click(ctaButton);
 
     expect(history.location.pathname).toEqual('/search/javascript');
