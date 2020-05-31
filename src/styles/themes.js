@@ -7,6 +7,13 @@ const GlobalStyle = createGlobalStyle`
     color: ${({ theme }) => theme.color.primary};
     width: 100%;
   }
+
+  h1 {
+    color: ${({ theme }) => theme.color.secondary};
+    font-family: ${({ theme }) => theme.font.secondary};
+    font-size: 38px;
+    font-weight: normal;
+  }
 `;
 
 const mainTheme = {
@@ -22,6 +29,10 @@ const mainTheme = {
     size: {
       small: '14px',
     },
+  },
+  button: {
+    background: '#fdb755',
+    color: '#ffffff',
   },
 };
 
