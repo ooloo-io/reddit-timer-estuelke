@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import InfoSection from '../components/InfoSection';
+import InfoSection from './InfoSection';
 
 
 const Article = styled.article`
