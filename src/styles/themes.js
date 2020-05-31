@@ -14,8 +14,9 @@ const GlobalStyle = createGlobalStyle`
     font-family: ${({ theme }) => theme.font.secondary};
     font-size: 38px;
     font-weight: normal;
+  }
   
-    #root {
+  #root {
     position: relative;
     min-height: 100vh;
   }
@@ -33,6 +34,7 @@ const mainTheme = {
     secondary: '#000000',
     navigation: '#636363',
     externalLink: '#0087ff',
+    searchBoxBorder: '#e6e6e6',
   },
   font: {
     primary: "'Montserrat', san-serif",
