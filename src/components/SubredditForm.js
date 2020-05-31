@@ -1,6 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 
@@ -24,13 +22,5 @@ const SubredditForm = ({ subreddit }) => (
   </>
 );
 
-
-SubredditForm.defaultProps = {
-  subreddit: 'PUT DEFAULT SUBREDDIT HERE!',
-};
-
-SubredditForm.propTypes = {
-  subreddit: PropTypes.string,
-};
 
 export default SubredditForm;
