@@ -51,7 +51,8 @@ const Info = () => (
       <AboutDiv>
         This app was created during a course on
         {' '}
-        <ExternalLink href="https://ooloo.io/employers">ooloo.io</ExternalLink>{' '}
+        <ExternalLink href="https://ooloo.io/employers">ooloo.io</ExternalLink>
+        {' '}
         with the goal to implement a pixel-perfect real-world application with
         professional workflows and tools like Kanban, Asana, Zeplin, GitHub,
         pull requests and code reviews.
