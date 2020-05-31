@@ -25,6 +25,9 @@ const Subreddit = styled.h3`
   font-weight: 500;
   margin: 15px -1px 36px 0;
   letter-spacing: 0.25px;
+`;
+
+const Img = styled.img`
   max-width: 100%;
 `;
 
@@ -57,7 +60,7 @@ const Hero = () => (
       {defaultSubreddit}
     </Subreddit>
     <Link to={`/search/${defaultSubreddit}`}>
-      <img src={heatmap} alt="Heatmap" />
+      <Img src={heatmap} alt="Heatmap" />
     </Link>
   </Main>
 );
