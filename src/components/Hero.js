@@ -39,7 +39,7 @@ const CTAButton = styled(Link)`
    border: none;
    border-radius: 4px;
    margin: 32px 0;
-   padding: 0 15px 0 16px;
+   padding: 0 15px;
    height: 36px;
    text-decoration: none;
    display: flex;

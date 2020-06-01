@@ -9,13 +9,15 @@ import App from '../App';
 describe('footer', () => {
   it('navigates to ooloo employers page when ooloo.io link is clicked', () => {
     const history = createMemoryHistory();
-    const { getByText } = render(
+    const { getAllByText, getByRole } = render(
       <Router history={history}>
         <App />
       </Router>,
     );
 
-    const oolooLink = getByText('ooloo.io');
+    const footer = getByRole('contentinfo');
+    const oolooLink = getAllByText('ooloo.io')[1];
+    expect(footer).toContainElement(oolooLink);
     expect(oolooLink.getAttribute('href')).toEqual('https://ooloo.io/employers');
   });
 
