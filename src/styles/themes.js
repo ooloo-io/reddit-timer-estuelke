@@ -16,9 +16,11 @@ const GlobalStyle = createGlobalStyle`
     font-weight: normal;
   }
   
-  #root {
-    position: relative;
-    min-height: 100vh;
+  h2 {
+    font-size: 24px;
+    font-family: ${({ theme }) => theme.font.secondary};
+    color: ${({ theme }) => theme.color.secondary};
+    margin-bottom: 14px;
   }
   
   #root {
