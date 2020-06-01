@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { baseButtonStyle } from '../styles/themes';
 import heatmap from '../assets/table.png';
 import defaultSubreddit from '../helpers/constants';
 
@@ -32,15 +33,9 @@ const Img = styled.img`
 `;
 
 const CTAButton = styled(Link)`
-   color: ${({ theme }) => theme.button.color};
-   background-color: ${({ theme }) => theme.button.background};
-   font-size: 14px;
-   text-transform: uppercase;
-   border: none;
-   border-radius: 4px;
+  ${baseButtonStyle}
    margin: 32px 0;
    padding: 0 15px;
-   height: 36px;
    text-decoration: none;
    display: flex;
    align-items: center;

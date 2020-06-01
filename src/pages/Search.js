@@ -9,8 +9,6 @@ const Search = () => {
   return (
     <main>
       <SubredditForm subreddit={subreddit} />
-      Search placeholder:
-      { subreddit }
     </main>
   );
 };

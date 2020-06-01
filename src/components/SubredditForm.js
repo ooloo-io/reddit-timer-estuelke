@@ -2,42 +2,45 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import defaultSubreddit from '../helpers/constants';
+import { baseButtonStyle } from '../styles/themes';
 
 
 const Form = styled.form`
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-top: 5px;
 `;
 
 const FormWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 1px;
 `;
 
 const Button = styled.button`
-  background-color: ${({ theme }) => theme.button.background};
-  color: ${({ theme }) => theme.button.color};
-  border: none;
-  height: 36px;
+  ${baseButtonStyle}
+  width: 92px;
 `;
 
 const SearchInput = styled.input`
-  height: 36px;
-  margin-left: 10px;
-  padding-left: 10px;
-  line-height: 36px;
+  height: 32px;
+  margin: 0 9px;
+  padding-left: 17px;
   font-size: ${({ theme }) => theme.font.size.small};
-  max-width: 370px;
+  max-width: 351px;
+  width: 100%;
   border: 1px solid ${({ theme }) => theme.color.searchBoxBorder};
 `;
 
 const SubredditForm = ({ subreddit }) => (
   <FormWrapper>
     <h1>Find the best time for a subreddit</h1>
-    <Form>
-      <div>r/</div>
+    <Form method="POST">
+      <div>r /</div>
       <SearchInput type="text" id="subreddit" name="subreddit" value={subreddit} />
       <Button type="submit">Search</Button>
     </Form>
