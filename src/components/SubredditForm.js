@@ -36,12 +36,18 @@ const SearchInput = styled.input`
   border: 1px solid ${({ theme }) => theme.color.searchBoxBorder};
 `;
 
-const SubredditForm = ({ subreddit }) => (
+const SubredditForm = ({ subreddit, handleSubmit, handleChange }) => (
   <FormWrapper>
     <h1>Find the best time for a subreddit</h1>
-    <Form method="POST">
+    <Form onSubmit={handleSubmit}>
       <div>r /</div>
-      <SearchInput type="text" id="subreddit" name="subreddit" value={subreddit} />
+      <SearchInput
+        type="text"
+        id="subreddit"
+        name="subreddit"
+        defaultValue={subreddit}
+        onChange={handleChange}
+      />
       <Button type="submit">Search</Button>
     </Form>
   </FormWrapper>
@@ -49,6 +55,8 @@ const SubredditForm = ({ subreddit }) => (
 
 SubredditForm.propTypes = {
   subreddit: PropTypes.string,
+  handleSubmit: PropTypes.func.isRequired,
+  handleChange: PropTypes.func.isRequired,
 };
 
 SubredditForm.defaultProps = {
