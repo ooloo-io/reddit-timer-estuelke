@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
 import { Redirect, useParams } from 'react-router-dom';
 import SubredditForm from '../components/SubredditForm';
+import defaultSubreddit from '../helpers/constants';
 
 
 const Search = () => {
   const { subredditQuery } = useParams();
-  const [subreddit, setSubreddit] = useState(subredditQuery);
-  const [redirect, setRedirect] = useState(null);
+  const [subreddit, setSubreddit] = useState(subredditQuery || defaultSubreddit);
+  const [route, setRoute] = useState(`/search/${subreddit}`);
 
   const handleSubmit = (evt) => {
-    setRedirect(`/search/${subreddit}`);
+    setRoute(`/search/${subreddit}`);
     evt.preventDefault();
   };
 
@@ -25,10 +26,10 @@ const Search = () => {
     </main>
   );
 
-  if (redirect) {
+  if (route) {
     return (
       <>
-        <Redirect to={redirect} />
+        <Redirect to={route} />
         {searchPage}
       </>
     );

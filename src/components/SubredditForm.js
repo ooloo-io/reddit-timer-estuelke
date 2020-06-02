@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import defaultSubreddit from '../helpers/constants';
 import { baseButtonStyle } from '../styles/themes';
 
 
@@ -54,13 +53,9 @@ const SubredditForm = ({ subreddit, handleSubmit, handleChange }) => (
 );
 
 SubredditForm.propTypes = {
-  subreddit: PropTypes.string,
+  subreddit: PropTypes.string.isRequired,
   handleSubmit: PropTypes.func.isRequired,
   handleChange: PropTypes.func.isRequired,
-};
-
-SubredditForm.defaultProps = {
-  subreddit: defaultSubreddit,
 };
 
 export default SubredditForm;
