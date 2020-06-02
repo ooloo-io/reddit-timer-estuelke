@@ -44,7 +44,7 @@ const SubredditForm = ({ subreddit, handleSubmit, handleChange }) => (
         type="text"
         id="subreddit"
         name="subreddit"
-        defaultValue={subreddit}
+        value={subreddit}
         onChange={handleChange}
       />
       <Button type="submit">Search</Button>

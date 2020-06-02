@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Redirect, useParams, withRouter } from 'react-router-dom';
 import SubredditForm from '../components/SubredditForm';
 import defaultSubreddit from '../helpers/constants';
@@ -13,6 +13,10 @@ const Search = () => {
     setRoute(`/search/${subreddit}`);
     evt.preventDefault();
   };
+
+  useEffect(() => {
+    document.getElementById('subreddit').value = subredditQuery;
+  }, [subredditQuery]);
 
   const handleChange = (evt) => setSubreddit(evt.target.value);
 

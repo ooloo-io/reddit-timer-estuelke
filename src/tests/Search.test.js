@@ -7,9 +7,9 @@ import App from '../App';
 import defaultSubreddit from '../helpers/constants';
 
 describe('Search', () => {
-  it('input has default subreddit if none supplied', () => {
+  it('input to be defaultSubreddit when clicking on Search link', () => {
     const history = createMemoryHistory();
-    history.push('/search');
+    history.push('/search/wholesomememes');
 
     const { getByRole } = render(
       <Router history={history}>
@@ -18,6 +18,8 @@ describe('Search', () => {
     );
 
     const searchInput = getByRole('textbox');
+    const searchLink = getByRole('link', { name: /Search/ });
+    fireEvent.click(searchLink);
 
     expect(searchInput.value).toBe(defaultSubreddit);
   });
