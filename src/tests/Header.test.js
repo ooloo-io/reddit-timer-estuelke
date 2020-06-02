@@ -4,7 +4,7 @@ import { render, fireEvent } from '@testing-library/react';
 import { createMemoryHistory } from 'history';
 import '@testing-library/jest-dom/extend-expect';
 import App from '../App';
-
+import defaultSubreddit from '../helpers/constants';
 
 describe('header', () => {
   it('navigates to search page when search link is clicked', () => {
@@ -18,7 +18,7 @@ describe('header', () => {
     const searchLink = getByRole('link', { name: /Search/ });
     fireEvent.click(searchLink);
 
-    expect(history.location.pathname).toEqual('/search');
+    expect(history.location.pathname).toEqual(`/search/${defaultSubreddit}`);
   });
 
   it('navigates to home page when logo is clicked', () => {

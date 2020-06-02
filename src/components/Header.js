@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { ReactComponent as TimerLogo } from '../assets/logo.svg';
+import defaultSubreddit from '../helpers/constants';
 
 
 const HeaderWrapper = styled.header`
@@ -34,7 +35,7 @@ const Header = () => (
       <TimerLogo />
     </Link>
     <Nav>
-      <NavLink to="/search">Search</NavLink>
+      <NavLink to={`/search/${defaultSubreddit}`}>Search</NavLink>
       <NavLink to="/#how-it-works">How it works</NavLink>
       <NavLink to="/#about">About</NavLink>
     </Nav>
