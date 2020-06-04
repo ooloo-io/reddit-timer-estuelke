@@ -5,7 +5,7 @@ const TextInput = styled.input`
   margin: 0 10px;
   padding: 0 17px;
   font-size: ${({ theme }) => theme.font.size.small};
-  max-width: 351px;
+  max-width: 336px;
   width: 100%;
   border: 1px solid ${({ theme }) => theme.color.searchBoxBorder};
 `;
