@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Button from './Button';
 import TextInput from './Input';
-import defaultSubreddit from '../helpers/constants';
 
 const Form = styled.form`
   display: flex;
@@ -30,7 +29,7 @@ const SubredditForm = ({ subreddit, handleSubmit, handleChange }) => (
       <TextInput
         type="text"
         name="subreddit"
-        value={subreddit || defaultSubreddit}
+        value={subreddit}
         onChange={handleChange}
       />
       <Button type="submit">Search</Button>
@@ -39,13 +38,10 @@ const SubredditForm = ({ subreddit, handleSubmit, handleChange }) => (
 );
 
 SubredditForm.propTypes = {
-  subreddit: PropTypes.string,
+  subreddit: PropTypes.string.isRequired,
   handleSubmit: PropTypes.func.isRequired,
   handleChange: PropTypes.func.isRequired,
 };
 
-SubredditForm.defaultProps = {
-  subreddit: defaultSubreddit,
-};
 
 export default SubredditForm;
