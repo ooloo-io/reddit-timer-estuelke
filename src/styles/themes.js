@@ -1,4 +1,4 @@
-import { createGlobalStyle, css } from 'styled-components';
+import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -29,16 +29,6 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-const baseButtonStyle = css`
-  color: ${({ theme }) => theme.button.color};
-  background-color: ${({ theme }) => theme.button.background};
-  font-size: ${({ theme }) => theme.font.size.small};
-  text-transform: uppercase;
-  border: none;
-  border-radius: 4px;
-  height: 36px;
-`;
-
 const mainTheme = {
   color: {
     background: '#ffffff',
@@ -62,4 +52,4 @@ const mainTheme = {
   },
 };
 
-export { GlobalStyle, baseButtonStyle, mainTheme as default };
+export { GlobalStyle, mainTheme as default };
