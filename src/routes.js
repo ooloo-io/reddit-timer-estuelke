@@ -10,7 +10,7 @@ const Routes = () => (
     <Route exact path="/">
       <Home />
     </Route>
-    <Route path="/search/:subreddit?">
+    <Route exact path="/search/:subreddit?">
       <Search />
     </Route>
     <Route exact path="/terms">

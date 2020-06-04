@@ -16,6 +16,14 @@ const GlobalStyle = createGlobalStyle`
     font-weight: normal;
   }
   
+  h2 {
+    font-size: 24px;
+    font-family: ${({ theme }) => theme.font.secondary};
+    color: ${({ theme }) => theme.color.secondary};
+    margin-bottom: 14px;
+    font-weight: 400;
+  }
+  
   #root {
     position: relative;
     min-height: 100vh;
@@ -29,6 +37,7 @@ const mainTheme = {
     secondary: '#000000',
     navigation: '#636363',
     externalLink: '#0087ff',
+    searchBoxBorder: '#e6e6e6',
   },
   font: {
     primary: "'Montserrat', san-serif",

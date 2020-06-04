@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import Button from './Button';
 import heatmap from '../assets/table.png';
 import defaultSubreddit from '../helpers/constants';
 
@@ -15,7 +16,7 @@ const Title = styled.h1`
   margin: 27px 0 9px 0;
 `;
 
-const SubTitle = styled.h2`
+const SubTitle = styled.h3`
   font-size: 16px;
   font-weight: normal;
 `;
@@ -31,16 +32,8 @@ const Img = styled.img`
   max-width: 100%;
 `;
 
-const CTAButton = styled(Link)`
-   color: ${({ theme }) => theme.button.color};
-   background-color: ${({ theme }) => theme.button.background};
-   font-size: 14px;
-   text-transform: uppercase;
-   border: none;
-   border-radius: 4px;
+const CTAButton = styled(Button)`
    margin: 32px 0;
-   padding: 0 15px;
-   height: 36px;
    text-decoration: none;
    display: flex;
    align-items: center;
@@ -52,7 +45,7 @@ const Hero = () => (
     <SubTitle>
       Great timing, great results! Find the best time to post on your subreddit.
     </SubTitle>
-    <CTAButton to={`/search/${defaultSubreddit}`}>
+    <CTAButton as={Link} to={`/search/${defaultSubreddit}`}>
       Show me the best time
     </CTAButton>
     <Subreddit>

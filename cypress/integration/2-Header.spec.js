@@ -21,7 +21,7 @@ describeOnBranches('header')('Header', () => {
     cy.get('header')
       .contains('Search')
       .click();
-    cy.url().should('equal', `${Cypress.config().baseUrl}/search`);
+    cy.url().should('equal', `${Cypress.config().baseUrl}/search/javascript`);
   });
 
   it('Scrolls to "How it works" when clicking link in header', () => {
