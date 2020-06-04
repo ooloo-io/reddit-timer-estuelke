@@ -21,12 +21,18 @@ const FormWrapper = styled.div`
   margin-top: 1px;
 `;
 
+const SearchInput = styled(TextInput)`
+  max-width: 336px;
+  height: 32px;
+  margin: 0 10px;
+`;
+
 const SubredditForm = ({ subreddit, handleSubmit, handleChange }) => (
   <FormWrapper>
     <h1>Find the best time for a subreddit</h1>
     <Form onSubmit={handleSubmit}>
       <div>r /</div>
-      <TextInput
+      <SearchInput
         type="text"
         name="subreddit"
         value={subreddit}

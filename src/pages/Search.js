@@ -19,7 +19,7 @@ const Search = () => {
     setSubreddit(subredditQuery);
   }, [subredditQuery]);
 
-  const searchPage = (
+  return (
     <main>
       <SubredditForm
         subreddit={subreddit}
@@ -28,8 +28,6 @@ const Search = () => {
       />
     </main>
   );
-
-  return searchPage;
 };
 
 export default withRouter(Search);

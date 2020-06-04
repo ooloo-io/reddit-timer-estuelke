@@ -21,6 +21,7 @@ const GlobalStyle = createGlobalStyle`
     font-family: ${({ theme }) => theme.font.secondary};
     color: ${({ theme }) => theme.color.secondary};
     margin-bottom: 14px;
+    font-weight: 400;
   }
   
   #root {
