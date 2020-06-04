@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { baseButtonStyle } from '../styles/themes';
-
+import Button from './Button';
+import TextInput from './Input';
+import defaultSubreddit from '../helpers/constants';
 
 const Form = styled.form`
   display: flex;
@@ -11,6 +12,7 @@ const Form = styled.form`
   justify-content: center;
   width: 100%;
   margin-top: 5px;
+  white-space: nowrap;
 `;
 
 const FormWrapper = styled.div`
@@ -20,31 +22,15 @@ const FormWrapper = styled.div`
   margin-top: 1px;
 `;
 
-const Button = styled.button`
-  ${baseButtonStyle}
-  width: 92px;
-`;
-
-const SearchInput = styled.input`
-  height: 32px;
-  margin: 0 9px;
-  padding-left: 17px;
-  font-size: ${({ theme }) => theme.font.size.small};
-  max-width: 351px;
-  width: 100%;
-  border: 1px solid ${({ theme }) => theme.color.searchBoxBorder};
-`;
-
 const SubredditForm = ({ subreddit, handleSubmit, handleChange }) => (
   <FormWrapper>
     <h1>Find the best time for a subreddit</h1>
     <Form onSubmit={handleSubmit}>
       <div>r /</div>
-      <SearchInput
+      <TextInput
         type="text"
-        id="subreddit"
         name="subreddit"
-        value={subreddit}
+        value={subreddit || defaultSubreddit}
         onChange={handleChange}
       />
       <Button type="submit">Search</Button>
@@ -53,9 +39,13 @@ const SubredditForm = ({ subreddit, handleSubmit, handleChange }) => (
 );
 
 SubredditForm.propTypes = {
-  subreddit: PropTypes.string.isRequired,
+  subreddit: PropTypes.string,
   handleSubmit: PropTypes.func.isRequired,
   handleChange: PropTypes.func.isRequired,
+};
+
+SubredditForm.defaultProps = {
+  subreddit: defaultSubreddit,
 };
 
 export default SubredditForm;
