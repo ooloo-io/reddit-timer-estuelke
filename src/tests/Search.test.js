@@ -6,13 +6,13 @@ import '@testing-library/jest-dom/extend-expect';
 import App from '../App';
 import defaultSubreddit from '../helpers/constants';
 
-const renderSearchPage = (route) => {
-  return render(
+const renderSearchPage = (route) => (
+  render(
     <MemoryRouter initialEntries={[route]}>
       <App />
     </MemoryRouter>,
-  );
-};
+  )
+);
 
 describe('Search', () => {
   it('input to be defaultSubreddit when clicking on Search link', () => {
