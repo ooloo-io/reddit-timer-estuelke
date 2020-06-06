@@ -38,6 +38,7 @@ const mainTheme = {
     navigation: '#636363',
     externalLink: '#0087ff',
     searchBoxBorder: '#e6e6e6',
+    spinner: '#fdb755',
   },
   font: {
     primary: "'Montserrat', san-serif",
