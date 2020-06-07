@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, withRouter, useHistory, useReducer } from 'react-router-dom';
+import { useParams, withRouter, useHistory } from 'react-router-dom';
 import SubredditForm from '../components/SubredditForm';
 import Spinner from '../components/Spinner';
 import Heatmap from '../components/Heatmap';
