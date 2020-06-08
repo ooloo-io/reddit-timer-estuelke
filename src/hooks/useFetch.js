@@ -1,6 +1,13 @@
 import { useEffect, useState } from 'react';
 
-const requestPosts = async (url) => {
+const fetchUrl = (url, after, count, limit = 100, time = 'year') => {
+  const urlParams = `t=${time}&limit=${limit}${
+    count && after ? `&after=${after}&count${count}` : ''
+  }`;
+  return `${url}/top.json?${urlParams}`;
+};
+
+const makeRequest = async (url) => {
   const res = await fetch(url);
 
   if (!res.ok) {
@@ -11,24 +18,32 @@ const requestPosts = async (url) => {
   return data;
 };
 
-const aggregatePosts = async (baseUrl, numRequested = 500) => {
-  const posts = [];
-  let count = 0;
-  let url = baseUrl;
-
-  while (count < numRequested) {
-    const data = await requestPosts(url);
-
-    if (data.data.dist < 100) {
-      break;
-    }
-
-    posts.push(...data.data.children);
-    count += data.data.dist;
-    url = `${baseUrl}&after=${data.data.after}&count=${count}`;
+const fetchPosts = async (
+  url,
+  posts = [],
+  count = null,
+  after = null,
+  numRequests = 500,
+) => {
+  if (count >= numRequests) {
+    return posts;
   }
 
-  return posts;
+  const currentUrl = fetchUrl(url, after, count);
+
+  const data = await makeRequest(currentUrl);
+
+  const recordsRetrieved = data.data.dist;
+  posts.push(...data.data.children);
+
+  if (recordsRetrieved < 100) {
+    return posts;
+  }
+
+  const currentCount = count + recordsRetrieved;
+  const currentAfter = data.data.after;
+
+  return fetchPosts(url, posts, currentCount, currentAfter);
 };
 
 const useFetch = (url) => {
@@ -41,14 +56,7 @@ const useFetch = (url) => {
 
     const fetchData = async () => {
       try {
-        const res = await fetch(url);
-
-        if (!res.ok) {
-          throw new Error('Unable to fetch data');
-        }
-
-        const data = await res.json();
-        // const data = await aggregatePosts(url);
+        const data = await fetchPosts(url);
         setResponse(data);
         setLoading(false);
       } catch (error) {
