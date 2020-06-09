@@ -4,19 +4,19 @@ import SubredditForm from '../components/SubredditForm';
 import Spinner from '../components/Spinner';
 import Heatmap from '../components/Heatmap';
 import PostTable from '../components/PostTable';
-import useFetch from '../hooks/useFetch';
+import useFetchPosts from '../hooks/useFetchPosts';
 
 
 const Search = () => {
   const { subreddit: subredditQuery } = useParams();
   const history = useHistory();
   const [subreddit, setSubreddit] = useState(subredditQuery);
-  const [url, setUrl] = useState(`https://www.reddit.com/r/${subreddit}`);
-  const [response, loading, hasError] = useFetch(url);
+  // const [url, setUrl] = useState(`https://www.reddit.com/r/${subreddit}`);
+  const [posts, loading, hasError] = useFetchPosts(subreddit);
 
   const handleSubmit = (evt) => {
     history.push(`/search/${subreddit}`);
-    setUrl(`https://www.reddit.com/r/${subreddit}`);
+    // setUrl(`https://www.reddit.com/r/${subreddit}`);
     evt.preventDefault();
   };
 
@@ -24,7 +24,7 @@ const Search = () => {
 
   useEffect(() => {
     setSubreddit(subredditQuery);
-    setUrl(`https://www.reddit.com/r/${subredditQuery}`);
+    // setUrl(`https://www.reddit.com/r/${subredditQuery}`);
   }, [subredditQuery]);
 
   const HeatmapAndTable = () => {
@@ -34,7 +34,7 @@ const Search = () => {
     return (
       <>
         <Heatmap />
-        <PostTable posts={response} />
+        <PostTable posts={posts} />
       </>
     );
   };
