@@ -1,12 +1,24 @@
-import { renderHook, act } from '@testing-library/react-hooks';
+import { renderHook } from '@testing-library/react-hooks';
 import useFetchPosts from '../hooks/useFetchPosts';
 
-describe('useFetch', () => {
+describe('useFetchPosts', () => {
   it('returns 500 posts', async () => {
-    const url = 'https://www.reddit.com/r/javascript/top.json?t=year&limit=100&after=t3_cetrkq';
-    const { result, waitForNextUpdate } = renderHook(() => useFetchPosts(url));
+    const subreddit = 'javascript';
+    const { result, waitForNextUpdate } = renderHook(() => useFetchPosts(subreddit));
+    jest.setTimeout(10000);
 
     await waitForNextUpdate();
-    // Not implemented yet
+
+    expect(result.current[0].length).toBe(500);
+  });
+
+  it('returns null if subreddit does not exist', async () => {
+    const subreddit = 'this-subreddit-does-not-exist-probably';
+    const { result, waitForNextUpdate } = renderHook(() => useFetchPosts(subreddit));
+    jest.setTimeout(10000);
+
+    await waitForNextUpdate();
+
+    expect(result.current[0]).toBeNull();
   });
 });
