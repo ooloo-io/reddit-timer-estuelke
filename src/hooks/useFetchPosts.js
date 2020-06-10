@@ -19,11 +19,11 @@ const makeRequest = async (url) => {
   return res.json();
 };
 
-const fetchPosts = async (url, posts = [], after = null, maxPosts = 500) => {
+const fetchPosts = async (subreddit, posts = [], after = null, maxPosts = 500) => {
   if (posts.length >= maxPosts) {
     return posts;
   }
-  const currentUrl = createUrl(url, after);
+  const currentUrl = createUrl(subreddit, after);
 
   const data = await makeRequest(currentUrl);
 
@@ -36,7 +36,7 @@ const fetchPosts = async (url, posts = [], after = null, maxPosts = 500) => {
 
   const currentAfter = data.data.after;
 
-  return fetchPosts(url, newPosts, currentAfter);
+  return fetchPosts(subreddit, newPosts, currentAfter);
 };
 
 const useFetchPosts = (subreddit) => {
