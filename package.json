@@ -30,6 +30,9 @@
       "pre-commit": "sh scripts/validate-branch-name"
     }
   },
+  "jest": {
+    "globalSetup": "./global-setup.js"
+  },
   "browserslist": {
     "production": [
       ">0.2%",
