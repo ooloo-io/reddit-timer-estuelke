@@ -7,18 +7,10 @@ const daysOfWeek = [
   'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday',
 ];
 
-const hoursOfDay = ['12', '2', '4', '6', '8', '10'];
-
-const createTimeHeader = (period) => (
-  hoursOfDay.map((hour) => {
-    const timeLabel = `${hour}:00${period}`;
-    return (
-      <TableHeader colSpan="2" key={timeLabel}>
-        {timeLabel}
-      </TableHeader>
-    );
-  })
-);
+const hoursOfDay = [
+  '12:00am', '2:00am', '4:00am', '6:00am', '8:00am', '10:00am',
+  '12:00pm', '2:00pm', '4:00pm', '6:00pm', '8:00pm', '10:00pm',
+];
 
 const getCounts = (posts) => {
   const counts = Array(7).fill().map(() => Array(24).fill(0));
@@ -46,20 +38,20 @@ const Table = styled.table`
 
 const TableHeader = styled.th`
   background-image: linear-gradient(
-    ${({ theme }) => theme.color.topgradient},
-    ${({ theme }) => theme.color.bottomgradient}
+    ${({ theme }) => theme.color.topGradient},
+    ${({ theme }) => theme.color.bottomGradient}
   );
   border: none;
   height: 52px;
   padding: 0;
-  color: ${({ theme }) => theme.color.tablecolumnheader};
+  color: ${({ theme }) => theme.color.tableColumnHeader};
   font-weight: 500;
   font-size: ${({ theme }) => theme.font.size.small};
 `;
 
 const RowHeader = styled.td`
   color: ${({ theme }) => theme.color.background};
-  background-color: ${({ theme }) => theme.color.tablerowheader};
+  background-color: ${({ theme }) => theme.color.tableRowHeader};
   text-align: center;
   width: 154px;
   height: 40px;
@@ -78,12 +70,8 @@ const Timezone = styled.span`
 `;
 
 const Heatmap = ({ posts }) => {
-  const [counts] = useState(getCounts(posts));
-  const [clickedCellId, setClickedCellId] = useState('');
-
-  const handleCellClick = (cellId) => {
-    setClickedCellId(cellId);
-  };
+  const counts = getCounts(posts);
+  const [clickedCellId, setClickedCellId] = useState(null);
 
   return (
     <Wrapper>
@@ -91,8 +79,11 @@ const Heatmap = ({ posts }) => {
         <thead>
           <tr>
             <th>&nbsp;</th>
-            {createTimeHeader('am')}
-            {createTimeHeader('pm')}
+            {hoursOfDay.map((hour) => (
+              <TableHeader colSpan="2" key={hour}>
+                {hour}
+              </TableHeader>
+            ))}
           </tr>
         </thead>
         <tbody>
@@ -109,7 +100,7 @@ const Heatmap = ({ posts }) => {
                       colorValue={colorValue}
                       key={id}
                       id={id}
-                      handleCellClick={handleCellClick}
+                      handleCellClick={setClickedCellId}
                       clickedCellId={clickedCellId}
                     >
                       {hourCount}

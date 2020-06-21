@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
@@ -12,30 +12,21 @@ const TableCell = styled.td`
   font-size: ${({ theme }) => theme.font.size.small};
   background-color: ${({ theme, colorValue }) => theme.color.count[colorValue]};
   border: 1px solid ${({ theme, colorValue, clicked }) => (
-    clicked ? theme.color.tablerowheader : theme.color.count[colorValue]
+    clicked ? theme.color.tableRowHeader : theme.color.count[colorValue]
   )};
   &:hover {
-    border: 1px solid ${({ theme }) => theme.color.tablerowheader};
+    border: 1px solid ${({ theme }) => theme.color.tableRowHeader};
   }
 `;
 
 const HeatmapCell = ({
   children, colorValue, handleCellClick, id, clickedCellId,
 }) => {
-  const [clicked, setClicked] = useState(false);
+  const clicked = clickedCellId === id;
 
   const handleClick = () => {
-    setClicked(true);
     handleCellClick(id);
   };
-
-  useEffect(() => {
-    if (clickedCellId === id) {
-      setClicked(true);
-    } else {
-      setClicked(false);
-    }
-  }, [clickedCellId, id]);
 
   return (
     <TableCell
