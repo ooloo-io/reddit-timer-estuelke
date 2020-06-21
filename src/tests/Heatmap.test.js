@@ -42,11 +42,8 @@ describe('Heatmap', () => {
   });
 
   it('cell highlights on click', async () => {
-    let tableCells;
-    await act(async () => {
-      const { findAllByRole } = renderSearchPage('/search/kittens');
-      tableCells = await findAllByRole('cell');
-    });
+    const { findAllByRole } = renderSearchPage('/search/kittens');
+    const tableCells = await findAllByRole('cell');
 
     const originalStyle = window.getComputedStyle(tableCells[1]);
     const originalBorder = originalStyle.getPropertyValue('border');
