@@ -37,7 +37,7 @@ const RowHeader = styled.td`
 `;
 
 const HeatmapGrid = ({ posts }) => {
-  const postCountByHour = useMemo(() => getPostCountByHour(posts));
+  const postCountByHour = useMemo(() => getPostCountByHour(posts), [posts]);
   const [clickedCellId, setClickedCellId] = useState(null);
 
   return (
