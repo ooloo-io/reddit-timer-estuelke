@@ -21,23 +21,15 @@ const TableCell = styled.td`
 
 const HeatmapCell = ({
   children, colorValue, handleCellClick, id, clickedCellId,
-}) => {
-  const clicked = clickedCellId === id;
-
-  const handleClick = () => {
-    handleCellClick(id);
-  };
-
-  return (
-    <TableCell
-      colorValue={colorValue}
-      clicked={clicked}
-      onClick={handleClick}
-    >
-      {children}
-    </TableCell>
-  );
-};
+}) => (
+  <TableCell
+    colorValue={colorValue}
+    clicked={clickedCellId === id}
+    onClick={() => handleCellClick(id)}
+  >
+    {children}
+  </TableCell>
+);
 
 HeatmapCell.propTypes = {
   children: PropTypes.node.isRequired,
