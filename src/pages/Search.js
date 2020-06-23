@@ -30,7 +30,7 @@ const Search = () => {
     }
     return (
       <>
-        <Heatmap />
+        <Heatmap posts={posts} />
         <PostTable posts={posts} />
       </>
     );
