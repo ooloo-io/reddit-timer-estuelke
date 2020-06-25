@@ -26,12 +26,16 @@ const Timezone = styled.span`
   font-weight: bold;
 `;
 
-const Heatmap = ({ posts }) => (
+const Heatmap = ({ postCountByHour, clickedCellId, setClickedCellId }) => (
   <Wrapper>
     <Table>
       <HeatmapHoursHeader />
       <tbody>
-        <HeatmapGrid posts={posts} />
+        <HeatmapGrid
+          postCountByHour={postCountByHour}
+          clickedCellId={clickedCellId}
+          setClickedCellId={setClickedCellId}
+        />
       </tbody>
     </Table>
     <TimezoneWrapper>

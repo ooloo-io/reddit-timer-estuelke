@@ -36,9 +36,9 @@ const RowHeader = styled.td`
   font-size: ${({ theme }) => theme.font.size.medium};
 `;
 
-const HeatmapGrid = ({ posts }) => {
-  const postCountByHour = useMemo(() => getPostCountByHour(posts), [posts]);
-  const [clickedCellId, setClickedCellId] = useState(null);
+const HeatmapGrid = ({ postCountByHour, clickedCellId, setClickedCellId }) => {
+  // const postCountByHour = useMemo(() => getPostCountByHour(posts), [posts]);
+  // const [clickedCellId, setClickedCellId] = useState(null);
 
   return (
     postCountByHour.map((days, day) => {
