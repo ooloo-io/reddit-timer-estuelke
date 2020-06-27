@@ -47,8 +47,14 @@ const Heatmap = ({ postCountByHour, clickedCellId, setClickedCellId }) => (
 );
 
 Heatmap.propTypes = {
-  posts: PropTypes.arrayOf(PropTypes.object).isRequired,
+  postCountByHour: PropTypes.arrayOf(PropTypes.array),
+  clickedCellId: PropTypes.string,
+  setClickedCellId: PropTypes.func.isRequired,
 };
 
+Heatmap.defaultProps = {
+  postCountByHour: null,
+  clickedCellId: null,
+};
 
 export default Heatmap;

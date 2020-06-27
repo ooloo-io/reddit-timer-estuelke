@@ -16,6 +16,7 @@ const TableCell = styled.td`
   )};
   &:hover {
     border: 1px solid ${({ theme }) => theme.color.tableRowHeader};
+    cursor: pointer;
   }
 `;
 
@@ -36,7 +37,11 @@ HeatmapCell.propTypes = {
   colorValue: PropTypes.number.isRequired,
   handleCellClick: PropTypes.func.isRequired,
   id: PropTypes.string.isRequired,
-  clickedCellId: PropTypes.string.isRequired,
+  clickedCellId: PropTypes.string,
+};
+
+HeatmapCell.defaultProps = {
+  clickedCellId: null,
 };
 
 export default HeatmapCell;

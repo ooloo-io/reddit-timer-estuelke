@@ -1,15 +1,16 @@
 import React, { useEffect, useMemo, useState } from 'react';
+import PropTypes from 'prop-types';
 import Heatmap from './Heatmap';
 import PostTable from './PostTable';
 
 const comparePosts = (post1, post2) => {
-  if (post1.data.created_utc < post2.data.created_utc) {
-    return -1;
+  const date1 = new Date(post1.data.created_utc * 1000);
+  const date2 = new Date(post2.data.created_utc * 1000);
+  const comparison = date1.getMinutes() - date2.getMinutes();
+  if (comparison === 0) {
+    return date1.getSeconds() - date2.getSeconds();
   }
-  if (post1.data.created_utc > post2.data.created_utx) {
-    return 1;
-  }
-  return 0;
+  return comparison;
 };
 
 const getPostsAndCountByHour = (posts) => {
@@ -17,14 +18,22 @@ const getPostsAndCountByHour = (posts) => {
     .fill()
     .map(() => Array(24).fill(0));
 
-  const postsByHour = Array(7)
-    .fill()
-    .map(() => Array(24).fill([]));
+  const postsByHour = {};
 
   posts.forEach((post) => {
     const date = new Date(post.data.created_utc * 1000);
-    countsByHour[date.getDay()][date.getHours()] += 1;
-    postsByHour[date.getDay()][date.getHours()].push(post);
+    const day = date.getDay();
+    const hour = date.getHours();
+
+    countsByHour[day][hour] += 1;
+    if (postsByHour[day] && postsByHour[day][hour]) {
+      postsByHour[day][hour].push(post);
+    } else if (postsByHour[day]) {
+      postsByHour[day][hour] = [post];
+    } else {
+      postsByHour[day] = {};
+      postsByHour[day][hour] = [post];
+    }
   });
 
   return [countsByHour, postsByHour];
@@ -35,8 +44,25 @@ const HeatmapAndTable = ({ hasError, posts }) => {
     () => getPostsAndCountByHour(posts), [posts],
   );
   const [clickedCellId, setClickedCellId] = useState(null);
+  const [clickedCellPosts, setClickedCellPosts] = useState(null);
+  const [postTableIsVisible, setPostTableIsVisible] = useState(false);
 
-  useEffect(() => {}, [clickedCellId]);
+  useEffect(() => {
+    if (clickedCellId) {
+      const [day, hour] = clickedCellId.split('-');
+
+      const postCountForCell = postCountByHour[day][hour];
+      if (postCountForCell === 0) {
+        setPostTableIsVisible(false);
+      } else {
+        const postsForCell = postsByHour[day][hour];
+        postsForCell.sort(comparePosts);
+
+        setPostTableIsVisible(true);
+        setClickedCellPosts(postsForCell);
+      }
+    }
+  }, [clickedCellId, postCountByHour, postsByHour]);
 
   if (hasError) {
     return <div>Error loading data</div>;
@@ -48,9 +74,14 @@ const HeatmapAndTable = ({ hasError, posts }) => {
         clickedCellId={clickedCellId}
         setClickedCellId={setClickedCellId}
       />
-      {clickedCellId && <PostTable posts={posts} />}
+      {postTableIsVisible && <PostTable posts={clickedCellPosts} />}
     </>
   );
+};
+
+HeatmapAndTable.propTypes = {
+  hasError: PropTypes.bool.isRequired,
+  posts: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default HeatmapAndTable;

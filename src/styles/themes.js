@@ -41,6 +41,7 @@ const mainTheme = {
     spinner: '#fdb755',
     tableColumnHeader: '#787878',
     tableRowHeader: '#1E2537',
+    tableBorder: '#dddddd',
     topGradient: '#fefefe',
     bottomGradient: '#e9e9e9',
     count: {

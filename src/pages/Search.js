@@ -3,8 +3,6 @@ import { useParams, withRouter, useHistory } from 'react-router-dom';
 import SubredditForm from '../components/SubredditForm';
 import Spinner from '../components/Spinner';
 import HeatmapAndTable from '../components/HeatmapAndTable';
-// import Heatmap from '../components/Heatmap';
-// import PostTable from '../components/PostTable';
 import useFetchPosts from '../hooks/useFetchPosts';
 
 
@@ -24,18 +22,6 @@ const Search = () => {
   useEffect(() => {
     setSubreddit(subredditQuery);
   }, [subredditQuery]);
-
-  // const HeatmapAndTable = () => {
-  //   if (hasError) {
-  //     return <div>Error loading data</div>;
-  //   }
-  //   return (
-  //     <>
-  //       <Heatmap posts={posts} />
-  //       <PostTable posts={posts} />
-  //     </>
-  //   );
-  // };
 
   return (
     <main>
