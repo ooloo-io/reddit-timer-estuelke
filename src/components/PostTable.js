@@ -7,25 +7,28 @@ const TableWrapper = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 12px;
   padding-bottom: 127px;
 `;
 
 const PostsTable = styled.table`
   max-width: 786px;
   width: 100%;
-  margin: -2 auto 0;
-  cell-collapse: 0;
+  margin: 1px auto 0;
+  border-collapse: collapse;
   border-spacing: 0;
-  border: 1px solid ${({ theme }) => theme.color.tableBorder};
+  table-layout: fixed;
 `;
 
-const TableHeading = styled.div`
+const H2Wrapper = styled.div`
   display: flex;
   justify-content: flex-start;
   max-width: 786px;
   width: 100%;
-  margin: 0 auto;
+  margin: 31px auto 10px;
+`;
+
+const H2 = styled.h2`
+  margin: 0;
 `;
 
 const Th = styled.th`
@@ -33,13 +36,13 @@ const Th = styled.th`
   font-size: ${({ theme }) => theme.font.size.small};
   color: ${({ theme }) => theme.color.secondary};
   border: 1px solid ${({ theme }) => theme.color.tableBorder};
-  padding: 8px 12px;
+  padding: 9px 12px;
   white-space: nowrap;
 `;
 
 const Td = styled.td`
   border: 1px solid ${({ theme }) => theme.color.tableBorder};
-  padding: 8px 12px;
+  padding: 9px 12px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -47,12 +50,29 @@ const Td = styled.td`
   font-size: ${({ theme }) => theme.font.size.small};
 `;
 
-const TitleTd = styled(Td)`
-  max-width: 350px;
+const TitleTh = styled(Th)`
+  width: 47.55%;
+  // max-width: 350px;
 `;
 
-const AuthorTd = styled(Td)`
-  max-width: 104px;
+const TimeTh = styled(Th)`
+  width: 14.65%;
+  // max-width: 90px;
+`;
+
+const ScoreTh = styled(Th)`
+  width: 8.2%;
+  // max-width: 40px;
+`;
+
+const CommentsTh = styled(Th)`
+  width: 13.2%;
+  // max-width: 80px;
+`;
+
+const AuthorTh = styled(Th)`
+  width: 16.5%;
+  // max-width: 104px;
 `;
 
 const TableLink = styled(Link)`
@@ -84,23 +104,23 @@ const getAuthorDisplay = (author) => {
 
 const PostTable = ({ posts }) => (
   <TableWrapper>
-    <TableHeading>
-      <h2>Posts</h2>
-    </TableHeading>
+    <H2Wrapper>
+      <H2>Posts</H2>
+    </H2Wrapper>
     <PostsTable>
       <thead>
         <tr>
-          <Th>Title</Th>
-          <Th>Time Posted</Th>
-          <Th>Score</Th>
-          <Th>Comments</Th>
-          <Th>Author</Th>
+          <TitleTh>Title</TitleTh>
+          <TimeTh>Time Posted</TimeTh>
+          <ScoreTh>Score</ScoreTh>
+          <CommentsTh>Comments</CommentsTh>
+          <AuthorTh>Author</AuthorTh>
         </tr>
       </thead>
       <tbody>
         {posts.map((post) => (
           <tr key={post.data.name}>
-            <TitleTd>
+            <Td>
               <TableLink
                 as="a"
                 href={`https://www.reddit.com${post.data.permalink}`}
@@ -108,13 +128,13 @@ const PostTable = ({ posts }) => (
               >
                 {post.data.title}
               </TableLink>
-            </TitleTd>
+            </Td>
             <Td>{getTimePosted(post.data.created_utc)}</Td>
             <Td>{post.data.score}</Td>
             <Td>{post.data.num_comments}</Td>
-            <AuthorTd>
+            <Td>
               {getAuthorDisplay(post.data.author)}
-            </AuthorTd>
+            </Td>
           </tr>
         ))}
       </tbody>

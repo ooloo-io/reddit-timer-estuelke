@@ -9,7 +9,7 @@ const Wrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 60px;
+  margin-top: 59px;
 `;
 
 const Table = styled.table`

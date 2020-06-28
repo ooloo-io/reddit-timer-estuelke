@@ -4,8 +4,8 @@ import styled from 'styled-components';
 
 const TableCell = styled.td`
   text-align: center;
-  width: 39px;
-  height: 39px;
+  width: 38px;
+  height: 38px;
   padding: 0;
   color: white;
   font-weight: bold;
