@@ -18,7 +18,11 @@ const getPostsAndCountByHour = (posts) => {
     .fill()
     .map(() => Array(24).fill(0));
 
-  const postsByHour = {};
+  const postsByHour = Array(7)
+    .fill()
+    .map(() => Array(24).fill([]));
+
+  // const postsByHour = {};
 
   posts.forEach((post) => {
     const date = new Date(post.data.created_utc * 1000);
@@ -26,14 +30,15 @@ const getPostsAndCountByHour = (posts) => {
     const hour = date.getHours();
 
     countsByHour[day][hour] += 1;
-    if (postsByHour[day] && postsByHour[day][hour]) {
-      postsByHour[day][hour].push(post);
-    } else if (postsByHour[day]) {
-      postsByHour[day][hour] = [post];
-    } else {
-      postsByHour[day] = {};
-      postsByHour[day][hour] = [post];
-    }
+    postsByHour[day][hour].push(post);
+    // if (postsByHour[day] && postsByHour[day][hour]) {
+    //   postsByHour[day][hour].push(post);
+    // } else if (postsByHour[day]) {
+    //   postsByHour[day][hour] = [post];
+    // } else {
+    //   postsByHour[day] = {};
+    //   postsByHour[day][hour] = [post];
+    // }
   });
 
   return [countsByHour, postsByHour];
