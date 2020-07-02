@@ -1,78 +1,74 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+import Author from './Author';
 
 const TableWrapper = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   padding-bottom: 127px;
+  max-width: 786px;
+  width: 100%;
+  margin: 0 auto;
 `;
 
 const PostsTable = styled.table`
-  max-width: 786px;
-  width: 100%;
   margin: 1px auto 0;
   border-collapse: collapse;
   border-spacing: 0;
   table-layout: fixed;
+  width: 100%;
 `;
 
 const H2Wrapper = styled.div`
-  display: flex;
-  justify-content: flex-start;
-  max-width: 786px;
-  width: 100%;
   margin: 31px auto 10px;
+  width: 100%;
 `;
 
 const H2 = styled.h2`
   margin: 0;
 `;
 
-const Th = styled.th`
-  text-align: left;
-  font-size: ${({ theme }) => theme.font.size.small};
-  color: ${({ theme }) => theme.color.secondary};
-  border: 1px solid ${({ theme }) => theme.color.tableBorder};
+const TableCellStyle = css`
   padding: 9px 12px;
   white-space: nowrap;
+  border: 1px solid ${({ theme }) => theme.color.tableBorder};
+  font-size: ${({ theme }) => theme.font.size.small};
+  color: ${({ theme }) => theme.color.secondary};
+`;
+
+const Th = styled.th`
+  text-align: left;
+  ${TableCellStyle}
 `;
 
 const Td = styled.td`
-  border: 1px solid ${({ theme }) => theme.color.tableBorder};
-  padding: 9px 12px;
-  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  color: ${({ theme }) => theme.color.secondary};
-  font-size: ${({ theme }) => theme.font.size.small};
+  ${TableCellStyle}
 `;
 
 const TitleTh = styled(Th)`
   width: 47.55%;
-  // max-width: 350px;
 `;
 
 const TimeTh = styled(Th)`
   width: 14.65%;
-  // max-width: 90px;
 `;
 
 const ScoreTh = styled(Th)`
   width: 8.2%;
-  // max-width: 40px;
 `;
 
 const CommentsTh = styled(Th)`
   width: 13.2%;
-  // max-width: 80px;
 `;
 
 const AuthorTh = styled(Th)`
   width: 16.5%;
-  // max-width: 104px;
 `;
 
 const TableLink = styled(Link)`
@@ -84,23 +80,23 @@ const TableLink = styled(Link)`
 const getTimePosted = (createdUTC) => {
   const date = new Date(createdUTC * 1000);
   const hourIn24 = date.getHours();
-  const hourIn12 = ((hourIn24 + 11) % 12) + 1;
+  const hourIn12 = hourIn24 % 12 || 12;
   const m = date.getMinutes();
   const minutes = m < 10 ? `0${m}` : m;
 
   return hourIn24 < 12 ? `${hourIn12}:${minutes} am` : `${hourIn12}:${minutes} pm`;
 };
 
-const getAuthorDisplay = (author) => {
-  if (author === '[deleted]') {
-    return author;
-  }
-  return (
-    <TableLink as="a" href={`https://www.reddit.com/u/${author}`} target="_blank">
-      {author}
-    </TableLink>
-  );
-};
+// const getAuthorDisplay = (author) => {
+//   if (author === '[deleted]') {
+//     return author;
+//   }
+//   return (
+//     <TableLink as="a" href={`https://www.reddit.com/u/${author}`} target="_blank">
+//       {author}
+//     </TableLink>
+//   );
+// };
 
 const PostTable = ({ posts }) => (
   <TableWrapper>
@@ -119,21 +115,21 @@ const PostTable = ({ posts }) => (
       </thead>
       <tbody>
         {posts.map((post) => (
-          <tr key={post.data.name}>
+          <tr key={post.name}>
             <Td>
               <TableLink
                 as="a"
-                href={`https://www.reddit.com${post.data.permalink}`}
+                href={`https://www.reddit.com${post.permalink}`}
                 target="_blank"
               >
-                {post.data.title}
+                {post.title}
               </TableLink>
             </Td>
-            <Td>{getTimePosted(post.data.created_utc)}</Td>
-            <Td>{post.data.score}</Td>
-            <Td>{post.data.num_comments}</Td>
+            <Td>{getTimePosted(post.createdAt)}</Td>
+            <Td>{post.score}</Td>
+            <Td>{post.numComments}</Td>
             <Td>
-              {getAuthorDisplay(post.data.author)}
+              <Author author={post.author} />
             </Td>
           </tr>
         ))}

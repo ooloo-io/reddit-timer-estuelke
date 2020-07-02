@@ -10,7 +10,7 @@ const Search = () => {
   const { subreddit: subredditQuery } = useParams();
   const history = useHistory();
   const [subreddit, setSubreddit] = useState(subredditQuery);
-  const [posts, loading, hasError] = useFetchPosts(subredditQuery);
+  const [postsByHour, postCountByHour, loading, hasError] = useFetchPosts(subredditQuery);
 
   const handleSubmit = (evt) => {
     history.push(`/search/${subreddit}`);
@@ -30,7 +30,17 @@ const Search = () => {
         handleSubmit={handleSubmit}
         handleChange={handleChange}
       />
-      {loading ? <Spinner /> : <HeatmapAndTable hasError={hasError} posts={posts} />}
+      {
+        loading
+          ? <Spinner />
+          : (
+            <HeatmapAndTable
+              hasError={hasError}
+              postsByHour={postsByHour}
+              postCountByHour={postCountByHour}
+            />
+          )
+      }
     </main>
   );
 };
