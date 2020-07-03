@@ -18,7 +18,10 @@ describeOnBranches('posts-table')('Posts Table', () => {
     it('links to Reddit posts', () => {
       cy.contains(/The new Babel release gives support/)
         .and('have.attr', 'href')
-        .and('eq', 'https://reddit.com/r/javascript/comments/er5hqm/the_new_babel_release_gives_support_for/');
+        .and(
+          'match',
+          /https:\/\/(www.)?reddit.com\/r\/javascript\/comments\/er5hqm\/the_new_babel_release_gives_support_for\//,
+        );
     });
 
     it('link opens in new tab', () => {
@@ -38,7 +41,7 @@ describeOnBranches('posts-table')('Posts Table', () => {
     it('links to Reddit posts', () => {
       cy.contains('abazi')
         .and('have.attr', 'href')
-        .and('eq', 'https://reddit.com/u/abazi');
+        .and('match', /https:\/\/(www.)?reddit.com\/u\/abazi/);
     });
 
     it('link opens in new tab', () => {
