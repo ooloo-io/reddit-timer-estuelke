@@ -48,7 +48,7 @@ describe('useFetchPosts', () => {
 
     const posts = result.current[0];
     const totalPosts = posts.reduce((totalCount, arrOfDay) => {
-      const hourCount = arrOfDay.reduce((count, arrOfHour) => count + arrOfHour.length ,0);
+      const hourCount = arrOfDay.reduce((count, arrOfHour) => count + arrOfHour.length, 0);
       return totalCount + hourCount;
     }, 0);
 
