@@ -39,8 +39,36 @@ const fetchPosts = async (subreddit, posts = [], after = null, maxPosts = 500) =
   return fetchPosts(subreddit, newPosts, currentAfter);
 };
 
+
+const transformPostData = (post) => ({
+  id: post.data.id,
+  author: post.data.author,
+  createdAt: post.data.created_utc,
+  name: post.data.name,
+  numComments: post.data.num_comments,
+  permalink: post.data.permalink,
+  score: post.data.score,
+  title: post.data.title,
+});
+
+const getPostsByHour = (posts) => {
+  const postsByHour = Array(7)
+    .fill()
+    .map(() => Array(24).fill().map(() => []));
+
+  posts.forEach((post) => {
+    const date = new Date(post.data.created_utc * 1000);
+    const day = date.getDay();
+    const hour = date.getHours();
+
+    postsByHour[day][hour].push(transformPostData(post));
+  });
+
+  return postsByHour;
+};
+
 const useFetchPosts = (subreddit) => {
-  const [posts, setPosts] = useState(null);
+  const [postsByHour, setPostsByHour] = useState(null);
   const [loading, setLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
 
@@ -50,7 +78,9 @@ const useFetchPosts = (subreddit) => {
     const fetchData = async () => {
       try {
         const data = await fetchPosts(subreddit);
-        setPosts(data);
+        const posts = getPostsByHour(data);
+
+        setPostsByHour(posts);
       } catch (error) {
         setHasError(true);
       } finally {
@@ -59,7 +89,7 @@ const useFetchPosts = (subreddit) => {
     };
     fetchData();
   }, [subreddit]);
-  return [posts, loading, hasError];
+  return [postsByHour, loading, hasError];
 };
 
 export default useFetchPosts;

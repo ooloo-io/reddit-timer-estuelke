@@ -4,8 +4,8 @@ import styled from 'styled-components';
 
 const TableCell = styled.td`
   text-align: center;
-  width: 39px;
-  height: 39px;
+  width: 38px;
+  height: 38px;
   padding: 0;
   color: white;
   font-weight: bold;
@@ -16,6 +16,7 @@ const TableCell = styled.td`
   )};
   &:hover {
     border: 1px solid ${({ theme }) => theme.color.tableRowHeader};
+    cursor: pointer;
   }
 `;
 
@@ -36,7 +37,11 @@ HeatmapCell.propTypes = {
   colorValue: PropTypes.number.isRequired,
   handleCellClick: PropTypes.func.isRequired,
   id: PropTypes.string.isRequired,
-  clickedCellId: PropTypes.string.isRequired,
+  clickedCellId: PropTypes.string,
+};
+
+HeatmapCell.defaultProps = {
+  clickedCellId: null,
 };
 
 export default HeatmapCell;

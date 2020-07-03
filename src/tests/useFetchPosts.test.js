@@ -45,7 +45,14 @@ describe('useFetchPosts', () => {
     const { result, waitForNextUpdate } = renderHook(() => useFetchPosts(subreddit));
 
     await waitForNextUpdate();
-    expect(result.current[0].length).toBe(500);
+
+    const posts = result.current[0];
+    const totalPosts = posts.reduce((totalCount, arrOfDay) => {
+      const hourCount = arrOfDay.reduce((count, arrOfHour) => count + arrOfHour.length, 0);
+      return totalCount + hourCount;
+    }, 0);
+
+    expect(totalPosts).toBe(500);
     expect(fetch.mock.calls).toEqual(expectedCalls);
   });
 });

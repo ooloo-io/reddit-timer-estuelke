@@ -9,7 +9,7 @@ const Wrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 60px;
+  margin-top: 59px;
 `;
 
 const Table = styled.table`
@@ -26,12 +26,16 @@ const Timezone = styled.span`
   font-weight: bold;
 `;
 
-const Heatmap = ({ posts }) => (
+const Heatmap = ({ postsByHour, clickedCellId, setClickedCellId }) => (
   <Wrapper>
     <Table>
       <HeatmapHoursHeader />
       <tbody>
-        <HeatmapGrid posts={posts} />
+        <HeatmapGrid
+          postsByHour={postsByHour}
+          clickedCellId={clickedCellId}
+          setClickedCellId={setClickedCellId}
+        />
       </tbody>
     </Table>
     <TimezoneWrapper>
@@ -43,8 +47,14 @@ const Heatmap = ({ posts }) => (
 );
 
 Heatmap.propTypes = {
-  posts: PropTypes.arrayOf(PropTypes.object).isRequired,
+  postsByHour: PropTypes.arrayOf(PropTypes.array),
+  clickedCellId: PropTypes.string,
+  setClickedCellId: PropTypes.func.isRequired,
 };
 
+Heatmap.defaultProps = {
+  postsByHour: null,
+  clickedCellId: null,
+};
 
 export default Heatmap;
