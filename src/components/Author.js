@@ -18,6 +18,7 @@ const Author = ({ author }) => {
       as="a"
       href={`https://www.reddit.com/u/${author}`}
       target="_blank"
+      rel="noopener noreferrer"
     >
       {author}
     </TableLink>

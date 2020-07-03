@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
 import Author from './Author';
 
-const TableWrapper = styled.section`
+const TableWrapper = styled.article`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -105,6 +105,7 @@ const PostTable = ({ posts }) => (
                 as="a"
                 href={`https://www.reddit.com${post.permalink}`}
                 target="_blank"
+                rel="noopener noreferrer"
               >
                 {post.title}
               </TableLink>
