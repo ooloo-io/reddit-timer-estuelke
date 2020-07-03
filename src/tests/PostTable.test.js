@@ -86,7 +86,7 @@ describe('PostTable', () => {
 
     expect(tableCells[16].innerHTML).toEqual('5'); // Sunday at 3:00pm
     expect(postLink.href).toBe(
-      'https://www.reddit.com/r/kittens/comments/g4dpgn/my_new_baby8_weeks/'
+      'https://www.reddit.com/r/kittens/comments/g4dpgn/my_new_baby8_weeks/',
     );
     expect(postLink.target).toBe('_blank');
     expect(postLink.rel).toBe('noopener noreferrer');
