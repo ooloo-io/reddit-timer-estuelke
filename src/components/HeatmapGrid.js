@@ -23,17 +23,18 @@ const RowHeader = styled.td`
   font-size: ${({ theme }) => theme.font.size.medium};
 `;
 
-const HeatmapGrid = ({ postCountByHour, clickedCellId, setClickedCellId }) => (
-  postCountByHour.map((days, day) => {
+const HeatmapGrid = ({ postsByHour, clickedCellId, setClickedCellId }) => (
+  postsByHour.map((days, day) => {
     const dayOfWeek = daysOfWeek[day];
     return (
       <tr key={dayOfWeek}>
         <RowHeader key={dayOfWeek}>
           {dayOfWeek}
         </RowHeader>
-        {days.map((hourCount, hour) => {
+        {days.map((posts, hour) => {
           const id = `${day}-${hour}`;
-          const colorValue = Math.min(hourCount, 10);
+          const numOfPosts = posts.length;
+          const colorValue = Math.min(numOfPosts, 10);
           return (
             <HeatmapCell
               colorValue={colorValue}
@@ -42,7 +43,7 @@ const HeatmapGrid = ({ postCountByHour, clickedCellId, setClickedCellId }) => (
               handleCellClick={setClickedCellId}
               clickedCellId={clickedCellId}
             >
-              {hourCount}
+              {numOfPosts}
             </HeatmapCell>
           );
         })}

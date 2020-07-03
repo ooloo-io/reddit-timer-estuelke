@@ -10,7 +10,7 @@ const Search = () => {
   const { subreddit: subredditQuery } = useParams();
   const history = useHistory();
   const [subreddit, setSubreddit] = useState(subredditQuery);
-  const [postsByHour, postCountByHour, loading, hasError] = useFetchPosts(subredditQuery);
+  const [postsByHour, loading, hasError] = useFetchPosts(subredditQuery);
 
   const handleSubmit = (evt) => {
     history.push(`/search/${subreddit}`);
@@ -37,7 +37,6 @@ const Search = () => {
             <HeatmapAndTable
               hasError={hasError}
               postsByHour={postsByHour}
-              postCountByHour={postCountByHour}
             />
           )
       }

@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Heatmap from './Heatmap';
 import PostTable from './PostTable';
@@ -14,10 +14,10 @@ const comparePosts = (post1, post2) => {
 };
 
 
-const HeatmapAndTable = ({ hasError, postsByHour, postCountByHour }) => {
+const HeatmapAndTable = ({ hasError, postsByHour }) => {
   const [clickedCellId, setClickedCellId] = useState(null);
   const [day, hour] = clickedCellId ? clickedCellId.split('-') : [null, null];
-  const clickedCellPosts = (day && hour && postCountByHour[day][hour])
+  const clickedCellPosts = (day && hour && postsByHour[day][hour].length)
     ? postsByHour[day][hour].sort(comparePosts)
     : null;
 
@@ -27,7 +27,7 @@ const HeatmapAndTable = ({ hasError, postsByHour, postCountByHour }) => {
   return (
     <>
       <Heatmap
-        postCountByHour={postCountByHour}
+        postsByHour={postsByHour}
         clickedCellId={clickedCellId}
         setClickedCellId={setClickedCellId}
       />
@@ -39,7 +39,6 @@ const HeatmapAndTable = ({ hasError, postsByHour, postCountByHour }) => {
 HeatmapAndTable.propTypes = {
   hasError: PropTypes.bool.isRequired,
   postsByHour: PropTypes.arrayOf(PropTypes.array).isRequired,
-  postCountByHour: PropTypes.arrayOf(PropTypes.array).isRequired,
 };
 
 export default HeatmapAndTable;

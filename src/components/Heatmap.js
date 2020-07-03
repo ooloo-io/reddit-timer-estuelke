@@ -26,13 +26,13 @@ const Timezone = styled.span`
   font-weight: bold;
 `;
 
-const Heatmap = ({ postCountByHour, clickedCellId, setClickedCellId }) => (
+const Heatmap = ({ postsByHour, clickedCellId, setClickedCellId }) => (
   <Wrapper>
     <Table>
       <HeatmapHoursHeader />
       <tbody>
         <HeatmapGrid
-          postCountByHour={postCountByHour}
+          postsByHour={postsByHour}
           clickedCellId={clickedCellId}
           setClickedCellId={setClickedCellId}
         />
@@ -47,13 +47,13 @@ const Heatmap = ({ postCountByHour, clickedCellId, setClickedCellId }) => (
 );
 
 Heatmap.propTypes = {
-  postCountByHour: PropTypes.arrayOf(PropTypes.array),
+  postsByHour: PropTypes.arrayOf(PropTypes.array),
   clickedCellId: PropTypes.string,
   setClickedCellId: PropTypes.func.isRequired,
 };
 
 Heatmap.defaultProps = {
-  postCountByHour: null,
+  postsByHour: null,
   clickedCellId: null,
 };
 

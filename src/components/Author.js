@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
@@ -8,10 +9,11 @@ const TableLink = styled(Link)`
   font-size: ${({ theme }) => theme.font.size.small};
 `;
 
-const Author = (author) => {
-  return author === '[deleted]' ? (
-    <>author</>
-  ) : (
+const Author = ({ author }) => {
+  if (author === '[deleted]') {
+    return <>{author}</>;
+  }
+  return (
     <TableLink
       as="a"
       href={`https://www.reddit.com/u/${author}`}
@@ -20,6 +22,10 @@ const Author = (author) => {
       {author}
     </TableLink>
   );
+};
+
+Author.propTypes = {
+  author: PropTypes.string.isRequired,
 };
 
 export default Author;

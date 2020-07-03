@@ -23,13 +23,9 @@ const PostsTable = styled.table`
   width: 100%;
 `;
 
-const H2Wrapper = styled.div`
+const Headline = styled.h2`
   margin: 31px auto 10px;
   width: 100%;
-`;
-
-const H2 = styled.h2`
-  margin: 0;
 `;
 
 const TableCellStyle = css`
@@ -87,22 +83,10 @@ const getTimePosted = (createdUTC) => {
   return hourIn24 < 12 ? `${hourIn12}:${minutes} am` : `${hourIn12}:${minutes} pm`;
 };
 
-// const getAuthorDisplay = (author) => {
-//   if (author === '[deleted]') {
-//     return author;
-//   }
-//   return (
-//     <TableLink as="a" href={`https://www.reddit.com/u/${author}`} target="_blank">
-//       {author}
-//     </TableLink>
-//   );
-// };
 
 const PostTable = ({ posts }) => (
   <TableWrapper>
-    <H2Wrapper>
-      <H2>Posts</H2>
-    </H2Wrapper>
+    <Headline>Posts</Headline>
     <PostsTable>
       <thead>
         <tr>
@@ -115,7 +99,7 @@ const PostTable = ({ posts }) => (
       </thead>
       <tbody>
         {posts.map((post) => (
-          <tr key={post.name}>
+          <tr key={post.id}>
             <Td>
               <TableLink
                 as="a"

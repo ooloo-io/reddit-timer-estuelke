@@ -41,6 +41,7 @@ const fetchPosts = async (subreddit, posts = [], after = null, maxPosts = 500) =
 
 
 const transformPostData = (post) => ({
+  id: post.data.id,
   author: post.data.author,
   createdAt: post.data.created_utc,
   name: post.data.name,
@@ -50,40 +51,24 @@ const transformPostData = (post) => ({
   title: post.data.title,
 });
 
-const getPostsAndCountByHour = (posts) => {
-  const countsByHour = Array(7)
-    .fill()
-    .map(() => Array(24).fill(0));
-
+const getPostsByHour = (posts) => {
   const postsByHour = Array(7)
     .fill()
-    .map(() => Array(24).fill([]));
-
-  // const postsByHour = {};
+    .map(() => Array(24).fill().map(() => []));
 
   posts.forEach((post) => {
     const date = new Date(post.data.created_utc * 1000);
     const day = date.getDay();
     const hour = date.getHours();
 
-    countsByHour[day][hour] += 1;
     postsByHour[day][hour].push(transformPostData(post));
-    // if (postsByHour[day] && postsByHour[day][hour]) {
-    //   postsByHour[day][hour].push(post);
-    // } else if (postsByHour[day]) {
-    //   postsByHour[day][hour] = [post];
-    // } else {
-    //   postsByHour[day] = {};
-    //   postsByHour[day][hour] = [post];
-    // }
   });
 
-  return [countsByHour, postsByHour];
+  return postsByHour;
 };
 
 const useFetchPosts = (subreddit) => {
   const [postsByHour, setPostsByHour] = useState(null);
-  const [countByHour, setCountByHour] = useState(null);
   const [loading, setLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
 
@@ -93,10 +78,9 @@ const useFetchPosts = (subreddit) => {
     const fetchData = async () => {
       try {
         const data = await fetchPosts(subreddit);
-        const [counts, posts] = getPostsAndCountByHour(data);
+        const posts = getPostsByHour(data);
 
         setPostsByHour(posts);
-        setCountByHour(counts);
       } catch (error) {
         setHasError(true);
       } finally {
@@ -105,7 +89,7 @@ const useFetchPosts = (subreddit) => {
     };
     fetchData();
   }, [subreddit]);
-  return [postsByHour, countByHour, loading, hasError];
+  return [postsByHour, loading, hasError];
 };
 
 export default useFetchPosts;
