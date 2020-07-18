@@ -1,68 +1,55 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Reddit Timer App
 
-## Available Scripts
+![Home Screen](./docs/app_screenshot.png "Home Screen")
 
-In the project directory, you can run:
+> Use a heatmap to show users the best time to post in a given subreddit.
 
-### `yarn start`
+## About This Project
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+I implemented this project as part of a course offered by [ooloo.io](https://ooloo.io/). This course was designed to simulate a professional real-world development environment by providing design, user stories, and code review.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+[Johannes](https://jkettmann.com/author/johannes/) at ooloo.io designed the project using [Zeplin](https://zeplin.io/). He also provided user stories via [Asana](https://app.asana.com/) as would be done on an agile software development team. 
 
-### `yarn test`
+I took each story and implemented them based on my own knowledge of React, css and Javascript.  Then submitted a pull request after each task was complete. [Johannes](https://jkettmann.com/author/johannes/), a senior developer, thoroughly reviewed the code and provided thoughtful feedback and guidance.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+The course was unique in that, instead of teaching someone how to code, it taught me how to code in a professional environment.  It's difficult to get this type of instruction in a teaching environment.  The following are some of the techniques I learned or strengthened: 
 
-### `yarn build`
+* **Code reviews**
+* **Professional Git workflow with pull requests**
+* **[Writing integration tests](https://dev.to/jkettmann/inside-a-dev-s-mind-refactoring-and-debugging-a-react-test-2jap)**
+* **Creating pixel-perfect designs**
+* **Working with styled components**
+* **Writing custom hooks**
+* **Debugging inside a browser**
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Stack and package choices were left up to my discrection with some guidance from the course as long as I met the acceptance criteria and used React to implement the app.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+## Tools Use for the Project
+* [Zeplin](https://zeplin.io/) - Design
+* [Perfect Pixel](https://chrome.google.com/webstore/detail/perfectpixel-by-welldonec/dkaagdgjmgdmbnecmcefdhjekcoceebi?hl=en) - Lining up the Design with the Result
+* [Asana](https://app.asana.com/) - Kanban board
+* Github - Version control & team collaboration
+* Slack - Team communication tool
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `yarn eject`
+### Install
+```sh
+yarn install
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Usage
+```sh
+yarn start
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Run tests
+```sh
+yarn test
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Author
+**Erin Stuelke**
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+***
+***Special Thanks to [ooloo.io](https://ooloo.io/), [Johannes Kettmann](https://jkettmann.com) and [kelvin8773](https://github.com/kelvin8773) (for providing a sample readme).***
